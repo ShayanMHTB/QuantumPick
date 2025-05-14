@@ -1,0 +1,38 @@
+{
+  "name": "quantumpick-contracts",
+  "version": "1.0.0",
+  "description": "QuantumPick smart contracts and testing environment",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "setup": "hardhat run scripts/setup-full-environment.ts --network localhost",
+    "deploy:usdc": "hardhat run scripts/deploy-usdc.ts --network localhost",
+    "deploy:all": "hardhat run scripts/deploy-all.ts --network localhost",
+    "cli": "hardhat run scripts/lottery-cli.ts --network localhost",
+    "clean": "rm -rf artifacts cache generated",
+    "reset": "npm run clean && npm run compile && npm run setup"
+  },
+  "keywords": [
+    "lottery",
+    "web3",
+    "hardhat",
+    "solidity"
+  ],
+  "author": "QuantumPick",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@types/node": "^20.11.0",
+    "hardhat": "^2.24.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.14.0"
+  }
+}
