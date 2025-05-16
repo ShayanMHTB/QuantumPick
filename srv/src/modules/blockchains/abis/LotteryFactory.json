@@ -1,0 +1,27 @@
+[
+  {
+    "inputs": [
+      {"internalType": "address", "name": "tokenAddress", "type": "address"},
+      {"internalType": "uint256", "name": "ticketPrice", "type": "uint256"},
+      {"internalType": "uint256", "name": "maxTickets", "type": "uint256"},
+      {"internalType": "uint256", "name": "minTickets", "type": "uint256"},
+      {"internalType": "uint256", "name": "startTime", "type": "uint256"},
+      {"internalType": "uint256", "name": "endTime", "type": "uint256"},
+      {"internalType": "uint256", "name": "drawTime", "type": "uint256"},
+      {"internalType": "uint256[]", "name": "prizePercentages", "type": "uint256[]"}
+    ],
+    "name": "createLottery",
+    "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "address", "name": "creator", "type": "address"},
+      {"indexed": true, "internalType": "address", "name": "lotteryAddress", "type": "address"}
+    ],
+    "name": "LotteryCreated",
+    "type": "event"
+  }
+]
