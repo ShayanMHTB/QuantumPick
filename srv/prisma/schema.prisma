@@ -1,0 +1,327 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * QuantumPick DB Schema
+ * 
+ * organized by function and module
+ */
+enum UserRole {
+  USER
+  CREATOR
+  PREMIUM
+  MODERATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  BANNED
+}
+
+enum AuthSource {
+  WEB3
+  TRADITIONAL
+  BOTH
+}
+
+enum LotteryStatus {
+  DRAFT
+  PENDING
+  ACTIVE
+  CLOSING
+  DRAWING
+  COMPLETED
+  CANCELLED
+}
+
+enum LotteryType {
+  STANDARD
+  PROGRESSIVE
+  FIXED_PRIZE
+}
+
+enum TicketStatus {
+  PURCHASED
+  WINNING
+  LOSING
+  REFUNDED
+}
+
+enum TransactionType {
+  LOTTERY_CREATION_FEE
+  TICKET_PURCHASE
+  PRIZE_DISTRIBUTION
+  REFUND
+  PLATFORM_FEE
+}
+
+enum TransactionStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  CANCELLED
+}
+
+model User {
+  id               String     @id @default(uuid())
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  email            String?    @unique
+  hashedPassword   String?
+  role             UserRole   @default(USER)
+  status           UserStatus @default(ACTIVE)
+  authSource       AuthSource @default(WEB3)
+  twoFactorEnabled Boolean    @default(false)
+  twoFactorSecret  String?
+  lastLoginAt      DateTime?
+
+  // Relations
+  wallets      Wallet[]
+  profile      UserProfile?
+  permissions  UserPermission[]
+  subscription UserSubscription?
+
+  // Other relations to be added later
+  // ownedLotteries    Lottery[]
+  // tickets           Ticket[]
+  // transactions      Transaction[]
+  Session Session[]
+
+  Lottery Lottery[]
+
+  Ticket Ticket[]
+
+  Transaction Transaction[]
+}
+
+model Wallet {
+  id          String   @id @default(uuid())
+  address     String   @unique
+  chainId     Int
+  isPrimary   Boolean  @default(false)
+  isVerified  Boolean  @default(true)
+  nickname    String?  // Add this line
+  createdAt   DateTime @default(now())
+  lastUsedAt  DateTime @default(now())
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  
+  @@unique([userId, address])
+  @@index([address])
+  Ticket Ticket[]
+}
+
+model WalletVerificationNonce {
+  id            String      @id @default(uuid())
+  walletAddress String
+  nonce         String
+  expiresAt     DateTime
+  createdAt     DateTime    @default(now())
+  
+  @@index([walletAddress])
+  @@index([expiresAt])
+}
+
+model UserProfile {
+  id          String   @id @default(uuid())
+  displayName String?
+  avatarUrl   String?
+  bio         String?
+  socialLinks Json?
+  preferences Json?    @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+}
+
+model UserPermission {
+  id          String   @id @default(uuid())
+  permission  String
+  grantedAt   DateTime @default(now())
+  grantedById String?
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@unique([userId, permission])
+}
+
+model UserSubscription {
+  id          String   @id @default(uuid())
+  planId      String
+  status      String   @default("ACTIVE")
+  startDate   DateTime @default(now())
+  endDate     DateTime
+  autoRenew   Boolean  @default(true)
+  paymentData Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  isRevoked Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model SiweNonce {
+  id            String   @id @default(uuid())
+  walletAddress String
+  nonce         String
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+
+  @@index([walletAddress])
+  @@index([expiresAt])
+}
+
+model Lottery {
+  id                String          @id @default(uuid())
+  name              String
+  description       String?
+  type              LotteryType     @default(STANDARD)
+  status            LotteryStatus   @default(DRAFT)
+  chainId           Int
+  contractAddress   String?
+  tokenAddress      String          // Address of the token used for tickets (e.g., USDC)
+  ticketToken       String?         // Add this field to your schema
+  ticketPrice       Decimal         @db.Decimal(18, 2)
+  maxTickets        Int?
+  minTickets        Int?
+  startTime         DateTime?
+  endTime           DateTime?
+  drawTime          DateTime?
+  drawTxHash        String?         // Transaction hash of the drawing
+  prizeDistribution Json            // How prizes are distributed
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  
+  // Relations
+  creator           User            @relation(fields: [creatorId], references: [id])
+  creatorId         String
+  tickets           Ticket[]
+  winners           LotteryWinner[]
+  
+  @@index([status])
+  @@index([creatorId])
+  @@index([chainId])
+  PlatformEarning PlatformEarning[]
+}
+
+model Ticket {
+  id                String          @id @default(uuid())
+  ticketNumber      Int
+  purchasedAt       DateTime        @default(now())
+  txHash            String?         // Transaction hash of the purchase
+  status            TicketStatus    @default(PURCHASED)
+  
+  // Relations
+  lottery           Lottery         @relation(fields: [lotteryId], references: [id])
+  lotteryId         String
+  purchaser         User            @relation(fields: [purchaserId], references: [id])
+  purchaserId       String
+  wallet            Wallet          @relation(fields: [walletId], references: [id])
+  walletId          String
+  winner            LotteryWinner?
+  
+  @@unique([lotteryId, ticketNumber])
+  @@index([purchaserId])
+  @@index([lotteryId])
+}
+
+model LotteryWinner {
+  id                String          @id @default(uuid())
+  prizeRank         Int             // 1 = first prize, 2 = second prize, etc.
+  prizeAmount       Decimal         @db.Decimal(18, 2)
+  claimed           Boolean         @default(false)
+  claimTxHash       String?         // Transaction hash of the claim
+  claimedAt         DateTime?
+  
+  // Relations
+  lottery           Lottery         @relation(fields: [lotteryId], references: [id])
+  lotteryId         String
+  ticket            Ticket          @relation(fields: [ticketId], references: [id])
+  ticketId          String          @unique
+  
+  @@index([lotteryId])
+}
+
+model Transaction {
+  id              String              @id @default(uuid())
+  type            TransactionType
+  status          TransactionStatus    @default(PENDING)
+  fromAddress     String
+  toAddress       String
+  amount          String              // Store as string to handle large numbers
+  chainId         Int
+  transactionHash String              @unique
+  blockNumber     Int?
+  gasUsed         String?
+  metadata        Json?               // Additional transaction details
+  relatedId       String?             // Could be lotteryId, ticketId, etc
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  
+  // Relations
+  user            User                @relation(fields: [userId], references: [id])
+  userId          String
+  platformEarning PlatformEarning?
+  
+  @@index([userId])
+  @@index([transactionHash])
+  @@index([type])
+  @@index([status])
+}
+
+model PlatformEarning {
+  id              String              @id @default(uuid())
+  amount          String
+  chainId         Int
+  earningType     String              // 'LOTTERY_CREATION_FEE', 'TICKET_SALE_COMMISSION', etc
+  createdAt       DateTime            @default(now())
+  
+  // Relations
+  transaction     Transaction         @relation(fields: [transactionId], references: [id])
+  transactionId   String              @unique
+  lottery         Lottery?            @relation(fields: [lotteryId], references: [id])
+  lotteryId       String?
+  
+  @@index([earningType])
+  @@index([lotteryId])
+}
