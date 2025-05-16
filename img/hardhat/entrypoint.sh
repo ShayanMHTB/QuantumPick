@@ -27,7 +27,7 @@ log "Checking Hardhat node state..."
 # Check if we need to compile contracts first
 if [ ! -d "/app/artifacts" ] || [ "$(ls -A /app/artifacts 2>/dev/null)" == "" ]; then
     log "Compiling contracts..."
-    cd /app && npx hardhat compile
+    cd /app && ./node_modules/.bin/hardhat compile
 fi
 
 # Check for state database and create if necessary
@@ -39,8 +39,8 @@ fi
 
 log "Starting Hardhat node..."
 
-# Start Hardhat node in the background
-cd /app && npx hardhat node --hostname 0.0.0.0 --port 8545 &
+# Start Hardhat node in the background using the local installation
+cd /app && ./node_modules/.bin/hardhat node --hostname 0.0.0.0 --port 8545 &
 HARDHAT_PID=$!
 
 # Wait for Hardhat node to be ready
@@ -64,7 +64,7 @@ fi
 # Check if environment setup is needed
 if [ ! -d "/app/generated" ] || [ ! -f "/app/generated/environment.json" ]; then
     log "Setting up development environment..."
-    cd /app && npx hardhat run scripts/setup-full-environment.ts --network localhost
+    cd /app && ./node_modules/.bin/hardhat run scripts/setup-full-environment.ts --network localhost
     log "Development environment setup complete!"
 else
     log "Environment already set up."
