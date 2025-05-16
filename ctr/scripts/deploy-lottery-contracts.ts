@@ -41,7 +41,7 @@ export async function deployLotteryContracts() {
     network: 'hardhat',
   };
 
-  const outputDir = path.join(__dirname, '../generated');
+  const outputDir = path.join(__dirname, './generated');
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }

@@ -116,7 +116,6 @@ services:
     volumes:
       - ./ctr:/app
       - ./dbs/hardhat:/app/hardhat-state
-      - ./generated:/app/generated
       # Anonymous volume for node_modules to prevent host contamination
       - /app/node_modules
     ports:

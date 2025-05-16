@@ -80,7 +80,7 @@ export async function deployStablecoins() {
     network: 'hardhat',
   };
 
-  const outputDir = path.join(__dirname, '../generated');
+  const outputDir = path.join(__dirname, './generated');
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }

@@ -42,7 +42,7 @@ async function setupFullEnvironment() {
       network: 'hardhat',
     };
 
-    const outputDir = path.join(__dirname, '../generated');
+    const outputDir = path.join(__dirname, './generated');
     fs.writeFileSync(
       path.join(outputDir, 'environment.json'),
       JSON.stringify(envConfig, null, 2),
@@ -169,7 +169,7 @@ async function createSampleLottery(
     };
 
     // Save sample lottery address
-    const outputDir = path.join(__dirname, '../generated');
+    const outputDir = path.join(__dirname, './generated');
     fs.writeFileSync(
       path.join(outputDir, 'sample-lottery.json'),
       JSON.stringify(

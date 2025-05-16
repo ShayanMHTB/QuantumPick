@@ -1,0 +1,19 @@
+{
+  "address": "0x33791c463B145298c575b4409d52c2BcF743BF67",
+  "creator": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+  "params": {
+    "tokenAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "ticketPrice": "10000000",
+    "maxTickets": 1000,
+    "minTickets": 10,
+    "startTime": 1747385958,
+    "endTime": 1747472298,
+    "drawTime": 1747472398,
+    "prizePercentages": [
+      5000,
+      3000,
+      2000
+    ]
+  },
+  "timestamp": "2025-05-16T08:58:18.138Z"
+}

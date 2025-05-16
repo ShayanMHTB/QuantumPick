@@ -63,7 +63,7 @@ export async function setupWallets(): Promise<WalletSetup> {
   }
 
   // Save wallet setup to file
-  const outputDir = path.join(__dirname, '../generated');
+  const outputDir = path.join(__dirname, './generated');
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
