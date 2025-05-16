@@ -9,7 +9,9 @@ export default function LoginPage() {
 
   return (
     <div className="container flex flex-col items-center justify-center space-y-6 py-8 md:py-12">
-      <h1 className="text-3xl font-bold">Welcome Back to QuantumPick</h1>
+      <h1 className="text-3xl text-center font-bold">
+        Welcome Back to QuantumPick
+      </h1>
       <p className="text-muted-foreground text-center max-w-md">
         Sign in to access your account, join lotteries, or manage your existing
         ones
