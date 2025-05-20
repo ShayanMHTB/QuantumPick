@@ -8,6 +8,7 @@ import { PrismaService } from 'src/integrations/prisma/prisma.service';
 import { UsersService } from '../../users/services/users.service';
 import * as bcrypt from 'bcrypt';
 import { AuthSource, UserStatus } from 'src/modules/users/entities/user.entity';
+import { EmailVerificationService } from './email-verification.service';
 
 @Injectable()
 export class CoreAuthService {
@@ -15,6 +16,7 @@ export class CoreAuthService {
     private prisma: PrismaService,
     private usersService: UsersService,
     private jwtService: JwtService,
+    private emailVerificationService: EmailVerificationService,
   ) {}
 
   async validateUser(email: string, password: string) {
@@ -68,7 +70,6 @@ export class CoreAuthService {
   }
 
   async register(email: string, password: string, displayName?: string) {
-    // Check if user already exists
     const existingUser = await this.usersService.findByEmail(email);
     if (existingUser) {
       throw new BadRequestException('Email already in use');
@@ -82,6 +83,7 @@ export class CoreAuthService {
       data: {
         email,
         hashedPassword,
+        isEmailVerified: false,
         authSource: AuthSource.TRADITIONAL,
         profile: {
           create: {
@@ -91,6 +93,10 @@ export class CoreAuthService {
       },
     });
 
+    // Send verification email
+    await this.emailVerificationService.sendVerificationEmail(user.id, email);
+
+    // Return login info
     return this.login(user);
   }
 }
