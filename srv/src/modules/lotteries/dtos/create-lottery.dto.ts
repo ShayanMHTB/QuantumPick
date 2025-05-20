@@ -41,6 +41,15 @@ class PrizeDistribution {
 }
 
 export class CreateLotteryDto {
+  @ApiProperty({
+    description: 'Lottery template ID',
+    example: 'basic',
+    enum: ['basic', 'medium', 'mega'],
+  })
+  @IsString()
+  @IsNotEmpty()
+  templateId: string;
+
   @ApiProperty({ description: 'Lottery name', example: 'Weekly Jackpot' })
   @IsString()
   @IsNotEmpty()
@@ -54,11 +63,6 @@ export class CreateLotteryDto {
   @IsString()
   @IsOptional()
   description?: string;
-
-  @ApiProperty({ enum: LotteryType, default: LotteryType.STANDARD })
-  @IsEnum(LotteryType)
-  @IsOptional()
-  type?: LotteryType;
 
   @ApiProperty({ description: 'Blockchain network ID', example: 1 })
   @IsInt()
@@ -78,24 +82,12 @@ export class CreateLotteryDto {
   ticketPrice: number;
 
   @ApiProperty({
-    description: 'Maximum number of tickets',
-    example: 1000,
-    required: false,
+    description: 'Prize pool target',
+    example: 5000,
   })
-  @IsInt()
-  @IsOptional()
-  @Min(1)
-  maxTickets?: number;
-
-  @ApiProperty({
-    description: 'Minimum number of tickets for valid draw',
-    example: 100,
-    required: false,
-  })
-  @IsInt()
-  @IsOptional()
-  @Min(1)
-  minTickets?: number;
+  @IsNumber()
+  @Min(0)
+  prizePool: number;
 
   @ApiProperty({
     description: 'Start time (ISO8601)',
