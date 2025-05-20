@@ -6,10 +6,14 @@ import { CreateUserDto } from '../dtos/create-user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserRole, UserStatus } from '../entities/user.entity';
 import { hashPassword } from '../helpers/password.helper';
+import { PermissionsService } from './permissions.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private permissionsService: PermissionsService,
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const { displayName, avatarUrl, bio, ...userData } = createUserDto;
@@ -47,14 +51,31 @@ export class UsersService {
     });
   }
 
-  async findOne(id: string, includeProfile = true) {
-    return this.prisma.user.findUnique({
+  async findOne(id: string, includeProfile = true, includePermissions = true) {
+    const user = await this.prisma.user.findUnique({
       where: { id },
       include: {
         wallets: includeProfile,
         profile: includeProfile,
+        permissions: includePermissions,
       },
     });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    if (includePermissions) {
+      const allPermissions =
+        await this.permissionsService.getUserPermissions(id);
+
+      return {
+        ...user,
+        allPermissions,
+      };
+    }
+
+    return user;
   }
 
   async findByEmail(email: string, includeProfile = true) {
