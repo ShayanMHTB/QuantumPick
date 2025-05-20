@@ -1,0 +1,376 @@
+{
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "overview": {
+      "description": "Here's an overview of your lottery activity and statistics."
+    },
+    "stats": {
+      "activeLotteries": "Active Lotteries",
+      "ticketsOwned": "Tickets Owned",
+      "totalWinnings": "Total Winnings",
+      "totalParticipated": "Total Participated"
+    },
+    "charts": {
+      "title": "Activity Overview",
+      "description": "Your lottery activity over time.",
+      "tabs": {
+        "lotteries": "Lotteries",
+        "revenue": "Revenue"
+      },
+      "timeframes": {
+        "title": "Show data for",
+        "7d": "7 days",
+        "1m": "1 month",
+        "6m": "6 months",
+        "1y": "1 year"
+      }
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "description": "Your recent lottery and ticket activity.",
+      "lotteryCreated": "Created lottery: {{type}} with {{prize}} prize",
+      "ticketPurchased": "Purchased {{amount}} tickets for {{cost}}",
+      "lotteryWon": "Won {{prize}} with ticket {{ticket}}",
+      "viewAll": "View all activity"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "description": "Common actions you can take right now.",
+      "buyTickets": "Buy Tickets",
+      "createLottery": "Create Lottery",
+      "depositFunds": "Deposit Funds"
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "lotteries": "Lotteries",
+      "tickets": "Tickets",
+      "profile": "Profile",
+      "logout": "Logout"
+    },
+    "sidebar": {
+      "title": "Navigation",
+      "theme": "Theme"
+    },
+    "header": {
+      "notifications": "Notifications",
+      "markAllRead": "Mark all as read",
+      "noNotifications": "No notifications yet",
+      "viewAll": "View all notifications",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "pages": {
+      "dashboard": "Dashboard",
+      "lotteries": "Lotteries",
+      "tickets": "Tickets",
+      "profile": "Profile",
+      "settings": "Settings"
+    }
+  },
+  "lotteries": {
+    "title": "Lotteries",
+    "description": "Browse and manage your lottery entries and creations.",
+    "createNew": "Create New Lottery",
+    "tabs": {
+      "all": "All",
+      "created": "Created",
+      "participated": "Participated",
+      "active": "Active",
+      "completed": "Completed"
+    },
+    "search": "Search lotteries...",
+    "noLotteries": "No lotteries found",
+    "noSearchResults": "No lotteries match your search criteria",
+    "table": {
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "prize": "Prize",
+      "participants": "Participants",
+      "timeLeft": "Time Left",
+      "actions": "Actions",
+      "yours": "Yours"
+    },
+    "actions": {
+      "view": "View Details",
+      "buyTickets": "Buy Tickets",
+      "edit": "Edit Lottery",
+      "delete": "Delete Lottery"
+    },
+    "deleteDialog": {
+      "title": "Delete Lottery",
+      "description": "Are you sure you want to delete this lottery? This action cannot be undone."
+    },
+    "createDialog": {
+      "title": "Create New Lottery",
+      "description": "Set up your lottery parameters and deploy it to the blockchain."
+    },
+    "createForm": {
+      "title": "Lottery Details",
+      "description": "Fill in the details for your new lottery",
+      "fields": {
+        "title": "Title",
+        "description": "Description",
+        "type": "Lottery Type",
+        "ticketPrice": "Ticket Price (USDC)",
+        "maxTickets": "Maximum Tickets",
+        "minTickets": "Minimum Tickets",
+        "endTime": "End Time",
+        "drawTime": "Draw Time",
+        "prizeDistribution": "Prize Distribution"
+      },
+      "placeholders": {
+        "title": "Enter a title for your lottery",
+        "description": "Describe your lottery",
+        "type": "Select lottery type",
+        "ticketPrice": "5",
+        "maxTickets": "1000",
+        "minTickets": "100"
+      },
+      "errors": {
+        "requiredFields": "Please fill in all required fields",
+        "timeSequence": "Draw time must be after end time"
+      }
+    }
+  },
+  "tickets": {
+    "title": "My Tickets",
+    "description": "Browse and manage your lottery tickets.",
+    "buyNew": "Buy New Tickets",
+    "tabs": {
+      "all": "All Tickets",
+      "active": "Active",
+      "used": "Used",
+      "won": "Winners"
+    },
+    "search": "Search tickets...",
+    "noTickets": "No tickets found",
+    "noSearchResults": "No tickets match your search criteria",
+    "stats": {
+      "total": "Total Tickets",
+      "active": "Active Tickets",
+      "won": "Winning Tickets",
+      "spent": "Total Spent"
+    },
+    "table": {
+      "id": "Ticket ID",
+      "lottery": "Lottery",
+      "status": "Status",
+      "purchased": "Purchased",
+      "price": "Price",
+      "prize": "Prize",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View Details",
+      "showQR": "Show QR Code",
+      "viewLottery": "View Lottery",
+      "copy": "Copy ID",
+      "refund": "Request Refund"
+    },
+    "info": {
+      "title": "About Tickets",
+      "description": "Lottery tickets are your entry into QuantumPick lotteries. Each ticket represents a chance to win prizes.",
+      "viewGuide": "Ticket Guide",
+      "faq": "Tickets FAQ"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "description": "View and edit your profile details and preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "wallets": "Wallets",
+      "security": "Security",
+      "permissions": "Permissions"
+    },
+    "actions": {
+      "edit": "Edit Profile",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "uploadAvatar": "Upload Photo"
+    },
+    "toast": {
+      "saved": "Profile updated successfully"
+    },
+    "profileInfo": {
+      "title": "Profile Information",
+      "description": "Your personal information and social profiles.",
+      "email": "Email Address",
+      "displayName": "Display Name",
+      "bio": "Bio",
+      "joined": "Member since {{date}}",
+      "socialLinks": "Social Links",
+      "twitter": "Twitter",
+      "discord": "Discord",
+      "telegram": "Telegram"
+    },
+    "placeholders": {
+      "displayName": "Enter your display name",
+      "bio": "Tell us about yourself",
+      "twitter": "Twitter username",
+      "discord": "Discord username",
+      "telegram": "Telegram username"
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Control how and when you receive notifications.",
+      "emailNotifications": "Email Notifications",
+      "emailDescription": "Receive lottery results and important updates via email",
+      "pushNotifications": "Push Notifications",
+      "pushDescription": "Receive real-time notifications in your browser",
+      "marketingEmails": "Marketing Emails",
+      "marketingDescription": "Receive promotional offers and news about QuantumPick"
+    },
+    "wallets": {
+      "title": "Connected Wallets",
+      "description": "Manage your connected blockchain wallets.",
+      "addWallet": "Add Wallet",
+      "primary": "Primary",
+      "setPrimary": "Set as Primary",
+      "edit": "Edit Nickname",
+      "remove": "Remove",
+      "copied": "Wallet address copied to clipboard",
+      "copyFailed": "Failed to copy wallet address",
+      "copy": "Copy wallet address",
+      "info": {
+        "title": "About Wallets",
+        "description": "Wallets are used to interact with the blockchain and participate in lotteries.",
+        "learnMore": "Learn More"
+      }
+    },
+    "security": {
+      "title": "Security Settings",
+      "description": "Manage your account security and authentication settings.",
+      "password": {
+        "title": "Password",
+        "description": "Update your password to keep your account secure",
+        "change": "Change Password"
+      },
+      "twoFactor": {
+        "title": "Two-Factor Authentication",
+        "description": "Add an extra layer of security to your account",
+        "enable": "Enable 2FA",
+        "disable": "Disable 2FA",
+        "enabled": "Enabled",
+        "disabled": "Disabled"
+      },
+      "sessions": {
+        "title": "Active Sessions",
+        "description": "View and manage your active login sessions",
+        "view": "View Sessions"
+      },
+      "deleteAccount": {
+        "title": "Delete Account",
+        "description": "Permanently delete your account and all associated data",
+        "button": "Delete Account"
+      },
+      "info": {
+        "title": "Account Security",
+        "description": "Keeping your account secure is essential for protecting your assets.",
+        "securityTips": "Security Tips",
+        "contact": "Contact Support"
+      }
+    },
+    "permissions": {
+      "title": "Permissions",
+      "description": "View and manage your platform permissions",
+      "yourPermissions": "Your Permissions",
+      "noPermissions": "You don't have any special permissions yet",
+      "progressTitle": "Permission Progress"
+    }
+  },
+  "detail": {
+    "backToLotteries": "Back to lotteries",
+    "prize": "Prize",
+    "ticketPrice": "Ticket Price",
+    "dates": "Dates",
+    "startDate": "Start",
+    "endDate": "End",
+    "drawDate": "Draw",
+    "blockchain": "Blockchain",
+    "network": "Network",
+    "contract": "Contract",
+    "viewOnExplorer": "View on explorer",
+    "ticketsSold": "{{sold}} of {{total}} tickets sold",
+    "minTicketsRequired": "Minimum {{min}} tickets required to draw ({{remaining}} more needed)",
+    "actions": "Actions",
+    "pause": "Pause Lottery",
+    "resume": "Resume Lottery",
+    "share": "Share Lottery",
+    "prizeDistribution": "Prize Distribution",
+    "firstPrize": "1st Prize",
+    "secondPrize": "2nd Prize",
+    "thirdPrize": "3rd Prize",
+    "prizeNote": "Prizes are distributed automatically after the drawing.",
+    "timeline": {
+      "title": "Timeline",
+      "created": "Created",
+      "ticketSales": "Ticket Sales Start",
+      "salesEnd": "Ticket Sales End",
+      "drawing": "Drawing",
+      "completed": "Distribution Complete",
+      "current": "Current"
+    },
+    "participants": {
+      "title": "Participants",
+      "description": "{{current}} participants out of {{max}}",
+      "search": "Search participants...",
+      "noParticipants": "No participants yet",
+      "noSearchResults": "No participants match your search",
+      "participant": "Participant",
+      "joined": "Joined",
+      "tickets": "Tickets",
+      "anonymous": "Anonymous"
+    }
+  },
+  "permissions": {
+    "CREATE_LOTTERY": {
+      "name": "Create Lottery",
+      "title": "Lottery Creation Permission",
+      "description": "Users need to purchase at least 10 tickets and spend at least $50 to earn this permission."
+    },
+    "EDIT_LOTTERY": {
+      "name": "Edit Lottery",
+      "title": "Lottery Edit Permission",
+      "description": "Allows editing existing lotteries."
+    },
+    "VIEW_ADMIN_DASHBOARD": {
+      "name": "View Admin Dashboard",
+      "title": "Admin Dashboard Access",
+      "description": "Provides access to the admin dashboard."
+    },
+    "MODERATE_USERS": {
+      "name": "Moderate Users",
+      "title": "User Moderation",
+      "description": "Allows moderating user accounts."
+    },
+    "MANAGE_PLATFORM": {
+      "name": "Manage Platform",
+      "title": "Platform Management",
+      "description": "Full platform management capabilities."
+    },
+    "metrics": {
+      "ticketsPurchased": "Tickets Purchased",
+      "amountSpent": "Amount Spent"
+    },
+    "criteria": {
+      "met": "You have met all criteria! You can now create lotteries.",
+      "notMet": "Continue participating to unlock lottery creation."
+    },
+    "noCreateLotteryPermission": "You don't have permission to create lotteries yet",
+    "createLottery": {
+      "notEligible": "You don't have permission to create lotteries yet. You need to participate more to unlock this feature."
+    },
+    "viewProgress": "View your progress",
+    "errors": {
+      "noCreatePermission": "You don't have permission to create lotteries"
+    }
+  }
+}
