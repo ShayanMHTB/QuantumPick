@@ -1,7 +1,8 @@
 'use client';
 
+import RegisterForm from '@/components/auth/RegisterForm';
 import WalletConnector from '@/components/auth/WalletConnector';
-import { Tabs, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState } from 'react';
 
 export default function RegisterPage() {
@@ -20,16 +21,16 @@ export default function RegisterPage() {
         onValueChange={setActiveTab}
         className="w-full max-w-md"
       >
-        {/* <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="wallet">Wallet</TabsTrigger>
           <TabsTrigger value="email">Email & Password</TabsTrigger>
-        </TabsList> */}
+        </TabsList>
         <TabsContent value="wallet" className="mt-6">
           <WalletConnector />
         </TabsContent>
-        {/* <TabsContent value="email" className="mt-6">
+        <TabsContent value="email" className="mt-6">
           <RegisterForm />
-        </TabsContent> */}
+        </TabsContent>
       </Tabs>
     </div>
   );

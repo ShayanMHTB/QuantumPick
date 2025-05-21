@@ -15,7 +15,9 @@ const TeamMember = ({ name, role, imageSrc }: TeamMemberProps) => (
         <User className="h-12 w-12" />
       </div>
     </div>
-    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{name}</h3>
+    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+      {name}
+    </h3>
     <p className="text-gray-600 dark:text-gray-400">{role}</p>
   </div>
 );
@@ -32,7 +34,9 @@ const Value = ({ title, description }: ValueProps) => (
       <div className="mr-3 bg-primary/10 rounded-full p-1">
         <Check className="h-4 w-4 text-primary" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+        {title}
+      </h3>
     </div>
     <p className="text-gray-600 dark:text-gray-400 ml-9">{description}</p>
   </div>
@@ -55,7 +59,9 @@ export default function AboutPage() {
               About <span className="text-primary">QuantumPick</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              We're building the future of transparent and trustworthy blockchain lotteries, where fairness and user experience are our top priorities.
+              We're building the future of transparent and trustworthy
+              blockchain lotteries, where fairness and user experience are our
+              top priorities.
             </p>
           </div>
         </div>
@@ -71,23 +77,40 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 dark:text-gray-400">
                 <p>
-                  QuantumPick was born from a simple observation: traditional lotteries lack transparency, and many blockchain-based alternatives had failed to build user trust due to poor security practices and opaque operations.
+                  QuantumPick was born from a simple observation: traditional
+                  lotteries lack transparency, and many blockchain-based
+                  alternatives had failed to build user trust due to poor
+                  security practices and opaque operations.
                 </p>
                 <p>
-                  Our founding team of blockchain enthusiasts and technology experts came together with a shared vision - to create a lottery platform that people could genuinely trust, built on the principles of transparency, fairness, and user control.
+                  Our founding team of blockchain enthusiasts and technology
+                  experts came together with a shared vision - to create a
+                  lottery platform that people could genuinely trust, built on
+                  the principles of transparency, fairness, and user control.
                 </p>
                 <p>
-                  Since our inception, we've been relentlessly focused on building a platform that combines the thrill of lotteries with the revolutionary benefits of blockchain technology. Our commitment to open-source development, security audits, and user-centered design has guided every decision we've made.
+                  Since our inception, we've been relentlessly focused on
+                  building a platform that combines the thrill of lotteries with
+                  the revolutionary benefits of blockchain technology. Our
+                  commitment to open-source development, security audits, and
+                  user-centered design has guided every decision we've made.
                 </p>
                 <p>
-                  Today, QuantumPick stands as a testament to what's possible when Web3 technology is applied with purpose - creating experiences that are not just trustless by design, but deserving of trust through action.
+                  Today, QuantumPick stands as a testament to what's possible
+                  when Web3 technology is applied with purpose - creating
+                  experiences that are not just trustless by design, but
+                  deserving of trust through action.
                 </p>
               </div>
             </div>
             <div className="relative rounded-xl overflow-hidden h-[400px] lg:h-[480px] bg-gradient-to-r from-primary/10 to-primary/5">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-3/4 h-3/4">
-                  <svg viewBox="0 0 200 200" className="w-full h-full text-primary/20" fill="currentColor">
+                  <svg
+                    viewBox="0 0 200 200"
+                    className="w-full h-full text-primary/20"
+                    fill="currentColor"
+                  >
                     <path d="M100 0C44.8 0 0 44.8 0 100s44.8 100 100 100 100-44.8 100-100S155.2 0 100 0zm0 180c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z" />
                     <path d="M100 40c-33.1 0-60 26.9-60 60s26.9 60 60 60 60-26.9 60-60-26.9-60-60-60zm0 100c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z" />
                     <circle cx="100" cy="100" r="20" />
@@ -116,28 +139,28 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-5xl mx-auto">
-            <Value 
-              title="Transparency Above All" 
+            <Value
+              title="Transparency Above All"
               description="We believe users deserve to see and understand every aspect of our operations. All our smart contracts are open-source and verified on blockchain explorers."
             />
-            <Value 
-              title="Provable Fairness" 
+            <Value
+              title="Provable Fairness"
               description="Using verifiable random functions and cryptographic proofs, we ensure that every lottery outcome is demonstrably fair and cannot be manipulated."
             />
-            <Value 
-              title="User Empowerment" 
+            <Value
+              title="User Empowerment"
               description="We put control in users' hands, allowing them to create and manage their own lotteries with customizable parameters and rules."
             />
-            <Value 
-              title="Security First" 
+            <Value
+              title="Security First"
               description="Multiple audit layers, formal verification processes, and comprehensive testing are baked into our development cycle."
             />
-            <Value 
-              title="Ethical Design" 
+            <Value
+              title="Ethical Design"
               description="We build features that encourage responsible participation and transparent operations, avoiding dark patterns and predatory mechanics."
             />
-            <Value 
-              title="Continuous Innovation" 
+            <Value
+              title="Continuous Innovation"
               description="We're constantly exploring new blockchain technologies and UX improvements to make Web3 lotteries more accessible and enjoyable."
             />
           </div>
@@ -152,19 +175,40 @@ export default function AboutPage() {
               Meet Our Team
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              The passionate people behind QuantumPick working to revolutionize Web3 lotteries.
+              The passionate people behind QuantumPick working to revolutionize
+              Web3 lotteries.
             </p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12">
             <TeamMember name="Alex Chen" role="Founder & CEO" imageSrc="" />
             <TeamMember name="Sarah Johnson" role="CTO" imageSrc="" />
-            <TeamMember name="Michael Rodriguez" role="Lead Developer" imageSrc="" />
+            <TeamMember
+              name="Michael Rodriguez"
+              role="Lead Developer"
+              imageSrc=""
+            />
             <TeamMember name="Emily Wong" role="UX Designer" imageSrc="" />
-            <TeamMember name="David Kim" role="Smart Contract Engineer" imageSrc="" />
-            <TeamMember name="Jessica Taylor" role="Marketing Director" imageSrc="" />
-            <TeamMember name="Omar Hassan" role="Security Specialist" imageSrc="" />
-            <TeamMember name="Lisa Müller" role="Community Manager" imageSrc="" />
+            <TeamMember
+              name="David Kim"
+              role="Smart Contract Engineer"
+              imageSrc=""
+            />
+            <TeamMember
+              name="Jessica Taylor"
+              role="Marketing Director"
+              imageSrc=""
+            />
+            <TeamMember
+              name="Omar Hassan"
+              role="Security Specialist"
+              imageSrc=""
+            />
+            <TeamMember
+              name="Lisa Müller"
+              role="Community Manager"
+              imageSrc=""
+            />
           </div>
         </div>
       </section>
@@ -178,7 +222,8 @@ export default function AboutPage() {
                 Join Us on Our Mission
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
-                Whether you're a participant, creator, or blockchain enthusiast, there's a place for you in the QuantumPick ecosystem.
+                Whether you're a participant, creator, or blockchain enthusiast,
+                there's a place for you in the QuantumPick ecosystem.
               </p>
               <Button size="lg" className="rounded-full">
                 Get Started Now
